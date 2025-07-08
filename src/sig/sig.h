@@ -168,12 +168,16 @@ extern "C" {
 #define OQS_SIG_alg_snova_SNOVA_60_10_4 "SNOVA_60_10_4"
 /** Algorithm identifier for SNOVA_29_6_5 */
 #define OQS_SIG_alg_snova_SNOVA_29_6_5 "SNOVA_29_6_5"
+/** Algorithm identifier for AIMER_128F_REF */
+#define OQS_SIG_alg_aimer_128f_ref "AIMER_128F_REF"
+/** Algorithm identifier for AIMER_192F_REF */
+#define OQS_SIG_alg_aimer_192f_ref "AIMER_192F_REF"
 ///// OQS_COPY_FROM_UPSTREAM_FRAGMENT_ALG_IDENTIFIER_END
 // EDIT-WHEN-ADDING-SIG
 ///// OQS_COPY_FROM_UPSTREAM_FRAGMENT_ALGS_LENGTH_START
 
 /** Number of algorithm identifiers above. */
-#define OQS_SIG_algs_length 68
+#define OQS_SIG_algs_length 70 //the original size was 68
 ///// OQS_COPY_FROM_UPSTREAM_FRAGMENT_ALGS_LENGTH_END
 
 /**
@@ -445,6 +449,9 @@ OQS_API bool OQS_SIG_supports_ctx_str(const char *alg_name);
 #ifdef OQS_ENABLE_SIG_SNOVA
 #include <oqs/sig_snova.h>
 #endif /* OQS_ENABLE_SIG_SNOVA */
+#ifdef OQS_ENABLE_SIG_AIMER
+#include <oqs/sig_aimer.h>
+#endif /* OQS_ENABLE_SIG_AIMER */
 ///// OQS_COPY_FROM_UPSTREAM_FRAGMENT_INCLUDE_END
 // EDIT-WHEN-ADDING-SIG
 

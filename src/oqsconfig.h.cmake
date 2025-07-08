@@ -330,6 +330,12 @@
 #cmakedefine OQS_ENABLE_SIG_snova_SNOVA_29_6_5 1
 #cmakedefine OQS_ENABLE_SIG_snova_SNOVA_29_6_5_avx2 1
 #cmakedefine OQS_ENABLE_SIG_snova_SNOVA_29_6_5_neon 1
+
+
+#cmakedefine OQS_ENABLE_SIG_AIMER 1
+#cmakedefine OQS_ENABLE_SIG_aimer_128f_ref 1
+#cmakedefine OQS_ENABLE_SIG_aimer_192f_ref 1
+
 ///// OQS_COPY_FROM_UPSTREAM_FRAGMENT_ADD_ALG_ENABLE_DEFINES_END
 
 ///// OQS_COPY_FROM_LIBJADE_FRAGMENT_ADD_ALG_ENABLE_DEFINES_START
