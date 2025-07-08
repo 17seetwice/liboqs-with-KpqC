@@ -232,3 +232,5 @@ The OQS project was founded by Douglas Stebila and Michele Mosca at the Universi
 Financial support for the development of Open Quantum Safe has been provided by Amazon Web Services, the Canadian Centre for Cyber Security, Cisco, the Unitary Fund, the NGI Assure Fund, and VeriSign Inc.
 
 Research projects which developed specific components of OQS have been supported by various research grants, including funding from the Natural Sciences and Engineering Research Council of Canada (NSERC); see the source papers for funding acknowledgments.
+# liboqs-with-AIMer
+# liboqs-with-AIMer
