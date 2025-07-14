@@ -7,8 +7,8 @@
 #include "params.h"
 #include "sign.h"
 #include "tree.h"
-#include "common/crypto_declassify.h"
-#include "common/rng.h"
+#include "crypto_declassify.h"
+#include "rng.h"
 #include <stddef.h>
 #include <stdint.h>
 #include <stdlib.h>

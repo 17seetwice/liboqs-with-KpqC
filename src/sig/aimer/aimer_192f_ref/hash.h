@@ -4,7 +4,7 @@
 #define HASH_H
 
 #include "params.h"
-#include "common/fips202.h"
+#include "fips202.h"
 #include <stddef.h>
 #include <stdint.h>
 
