@@ -168,16 +168,24 @@ extern "C" {
 #define OQS_SIG_alg_snova_SNOVA_60_10_4 "SNOVA_60_10_4"
 /** Algorithm identifier for SNOVA_29_6_5 */
 #define OQS_SIG_alg_snova_SNOVA_29_6_5 "SNOVA_29_6_5"
-/** Algorithm identifier for AIMER_128F_REF */
-#define OQS_SIG_alg_aimer_128f_ref "AIMER_128F_REF"
-/** Algorithm identifier for AIMER_192F_REF */
-#define OQS_SIG_alg_aimer_192f_ref "AIMER_192F_REF"
+/** Algorithm identifier for AIMER_128F */
+#define OQS_SIG_alg_aimer_128f "AIMER_128F"
+/** Algorithm identifier for AIMER_192F */
+#define OQS_SIG_alg_aimer_192f "AIMER_192F"
+/** Algorithm identifier for AIMER_256F */
+#define OQS_SIG_alg_aimer_256f "AIMER_256F"
+/** Algorithm identifier for AIMER_128S */
+#define OQS_SIG_alg_aimer_128s "AIMER_128S"
+/** Algorithm identifier for AIMER_192S */
+#define OQS_SIG_alg_aimer_192s "AIMER_192S"
+/** Algorithm identifier for AIMER_256S */
+#define OQS_SIG_alg_aimer_256s "AIMER_256S"
 ///// OQS_COPY_FROM_UPSTREAM_FRAGMENT_ALG_IDENTIFIER_END
 // EDIT-WHEN-ADDING-SIG
 ///// OQS_COPY_FROM_UPSTREAM_FRAGMENT_ALGS_LENGTH_START
 
 /** Number of algorithm identifiers above. */
-#define OQS_SIG_algs_length 70 //the original size was 68
+#define OQS_SIG_algs_length 74 //the original size was 68
 ///// OQS_COPY_FROM_UPSTREAM_FRAGMENT_ALGS_LENGTH_END
 
 /**

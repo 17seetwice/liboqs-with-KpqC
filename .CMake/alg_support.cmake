@@ -139,6 +139,12 @@ cmake_dependent_option(OQS_ENABLE_KEM_ml_kem_512 "" ON "OQS_ENABLE_KEM_ML_KEM" O
 cmake_dependent_option(OQS_ENABLE_KEM_ml_kem_768 "" ON "OQS_ENABLE_KEM_ML_KEM" OFF)
 cmake_dependent_option(OQS_ENABLE_KEM_ml_kem_1024 "" ON "OQS_ENABLE_KEM_ML_KEM" OFF)
 
+option(OQS_ENABLE_KEM_SMAUGT "Enable smaugt algorithm family" ON)
+cmake_dependent_option(OQS_ENABLE_KEM_smaugt_1 "" ON "OQS_ENABLE_KEM_SMAUGT" OFF)
+cmake_dependent_option(OQS_ENABLE_KEM_smaugt_3 "" ON "OQS_ENABLE_KEM_SMAUGT" OFF)
+cmake_dependent_option(OQS_ENABLE_KEM_smaugt_5 "" ON "OQS_ENABLE_KEM_SMAUGT" OFF)
+
+
 option(OQS_ENABLE_SIG_DILITHIUM "Enable dilithium algorithm family" ON)
 cmake_dependent_option(OQS_ENABLE_SIG_dilithium_2 "" ON "OQS_ENABLE_SIG_DILITHIUM" OFF)
 cmake_dependent_option(OQS_ENABLE_SIG_dilithium_3 "" ON "OQS_ENABLE_SIG_DILITHIUM" OFF)
@@ -226,7 +232,10 @@ cmake_dependent_option(OQS_ENABLE_SIG_snova_SNOVA_29_6_5 "" ON "OQS_ENABLE_SIG_S
 option(OQS_ENABLE_SIG_AIMER "Enable aimer algorithm family" ON)
 cmake_dependent_option(OQS_ENABLE_SIG_aimer_128f_ref "" ON "OQS_ENABLE_SIG_AIMER" OFF)
 cmake_dependent_option(OQS_ENABLE_SIG_aimer_192f_ref "" ON "OQS_ENABLE_SIG_AIMER" OFF)
-
+cmake_dependent_option(OQS_ENABLE_SIG_aimer_256f_ref "" ON "OQS_ENABLE_SIG_AIMER" OFF)
+cmake_dependent_option(OQS_ENABLE_SIG_aimer_128s_ref "" ON "OQS_ENABLE_SIG_AIMER" OFF)
+cmake_dependent_option(OQS_ENABLE_SIG_aimer_192s_ref "" ON "OQS_ENABLE_SIG_AIMER" OFF)
+cmake_dependent_option(OQS_ENABLE_SIG_aimer_256s_ref "" ON "OQS_ENABLE_SIG_AIMER" OFF)
 
 ##### OQS_COPY_FROM_UPSTREAM_FRAGMENT_ADD_ENABLE_BY_ALG_END
 
@@ -256,7 +265,7 @@ elseif (${OQS_ALGS_ENABLED} STREQUAL "STD")
 elseif(${OQS_ALGS_ENABLED} STREQUAL "NIST_R4")
 	filter_algs("KEM_classic_mceliece_348864;KEM_classic_mceliece_348864f;KEM_classic_mceliece_460896;KEM_classic_mceliece_460896f;KEM_classic_mceliece_6688128;KEM_classic_mceliece_6688128f;KEM_classic_mceliece_6960119;KEM_classic_mceliece_6960119f;KEM_classic_mceliece_8192128;KEM_classic_mceliece_8192128f;KEM_hqc_128;KEM_hqc_192;KEM_hqc_256;KEM_bike_l1;KEM_bike_l3;KEM_bike_l5")
 elseif(${OQS_ALGS_ENABLED} STREQUAL "NIST_SIG_ONRAMP")
-	filter_algs("SIG_mayo_1;SIG_mayo_2;SIG_mayo_3;SIG_mayo_5;SIG_cross_rsdp_128_balanced;SIG_cross_rsdp_128_fast;SIG_cross_rsdp_128_small;SIG_cross_rsdp_192_balanced;SIG_cross_rsdp_192_fast;SIG_cross_rsdp_192_small;SIG_cross_rsdp_256_balanced;SIG_cross_rsdp_256_fast;SIG_cross_rsdp_256_small;SIG_cross_rsdpg_128_balanced;SIG_cross_rsdpg_128_fast;SIG_cross_rsdpg_128_small;SIG_cross_rsdpg_192_balanced;SIG_cross_rsdpg_192_fast;SIG_cross_rsdpg_192_small;SIG_cross_rsdpg_256_balanced;SIG_cross_rsdpg_256_fast;SIG_cross_rsdpg_256_small;SIG_uov_ov_Ip;SIG_uov_ov_Is;SIG_uov_ov_III;SIG_uov_ov_V;SIG_uov_ov_Ip_pkc;SIG_uov_ov_Is_pkc;SIG_uov_ov_III_pkc;SIG_uov_ov_V_pkc;SIG_uov_ov_Ip_pkc_skc;SIG_uov_ov_Is_pkc_skc;SIG_uov_ov_III_pkc_skc;SIG_uov_ov_V_pkc_skc;SNOVA_24_5_4;SNOVA_24_5_4_SHAKE;SNOVA_24_5_4_esk;SNOVA_24_5_4_SHAKE_esk;SNOVA_37_17_2;SNOVA_25_8_3;SNOVA_56_25_2;SNOVA_49_11_3;SNOVA_37_8_4;SNOVA_24_5_5;SNOVA_60_10_4;SNOVA_29_6_5;AIMER_128F_REF;AIMER_192F_REF")
+	filter_algs("SIG_mayo_1;SIG_mayo_2;SIG_mayo_3;SIG_mayo_5;SIG_cross_rsdp_128_balanced;SIG_cross_rsdp_128_fast;SIG_cross_rsdp_128_small;SIG_cross_rsdp_192_balanced;SIG_cross_rsdp_192_fast;SIG_cross_rsdp_192_small;SIG_cross_rsdp_256_balanced;SIG_cross_rsdp_256_fast;SIG_cross_rsdp_256_small;SIG_cross_rsdpg_128_balanced;SIG_cross_rsdpg_128_fast;SIG_cross_rsdpg_128_small;SIG_cross_rsdpg_192_balanced;SIG_cross_rsdpg_192_fast;SIG_cross_rsdpg_192_small;SIG_cross_rsdpg_256_balanced;SIG_cross_rsdpg_256_fast;SIG_cross_rsdpg_256_small;SIG_uov_ov_Ip;SIG_uov_ov_Is;SIG_uov_ov_III;SIG_uov_ov_V;SIG_uov_ov_Ip_pkc;SIG_uov_ov_Is_pkc;SIG_uov_ov_III_pkc;SIG_uov_ov_V_pkc;SIG_uov_ov_Ip_pkc_skc;SIG_uov_ov_Is_pkc_skc;SIG_uov_ov_III_pkc_skc;SIG_uov_ov_V_pkc_skc;SNOVA_24_5_4;SNOVA_24_5_4_SHAKE;SNOVA_24_5_4_esk;SNOVA_24_5_4_SHAKE_esk;SNOVA_37_17_2;SNOVA_25_8_3;SNOVA_56_25_2;SNOVA_49_11_3;SNOVA_37_8_4;SNOVA_24_5_5;SNOVA_60_10_4;SNOVA_29_6_5;AIMER_128F;AIMER_192F;AIMER_256F;AIMER_128S;AIMER_192S;AIMER_256S")
 else()
 	message(STATUS "Alg enablement unchanged")
 endif()

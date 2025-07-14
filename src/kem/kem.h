@@ -91,11 +91,20 @@ extern "C" {
 #define OQS_KEM_alg_frodokem_1344_aes "FrodoKEM-1344-AES"
 /** Algorithm identifier for FrodoKEM-1344-SHAKE KEM. */
 #define OQS_KEM_alg_frodokem_1344_shake "FrodoKEM-1344-SHAKE"
+
+/** Algorithm identifier for SMAUGT-1 KEM. */
+#define OQS_KEM_alg_smaugt_1 "SmaugT-1"
+/** Algorithm identifier for SMAUGT-3 KEM. */
+#define OQS_KEM_alg_smaugt_3 "SmaugT-3"
+/** Algorithm identifier for SMAUGT-1 KEM. */
+#define OQS_KEM_alg_smaugt_5 "SmaugT-5"
+
 // EDIT-WHEN-ADDING-KEM
 ///// OQS_COPY_FROM_UPSTREAM_FRAGMENT_ALGS_LENGTH_START
 
-/** Number of algorithm identifiers above. */
-#define OQS_KEM_algs_length 29
+/** Number of algorithm identifiers above.
+AIMER ADD */ 
+#define OQS_KEM_algs_length 32
 ///// OQS_COPY_FROM_UPSTREAM_FRAGMENT_ALGS_LENGTH_END
 
 /**
@@ -317,6 +326,9 @@ OQS_API void OQS_KEM_free(OQS_KEM *kem);
 #ifdef OQS_ENABLE_KEM_FRODOKEM
 #include <oqs/kem_frodokem.h>
 #endif /* OQS_ENABLE_KEM_FRODOKEM */
+#ifdef OQS_ENABLE_KEM_SMAUGT
+#include <oqs/kem_smaugt.h>
+#endif /* OQS_ENABLE_KEM_SMAUGT */
 // EDIT-WHEN-ADDING-KEM
 
 #if defined(__cplusplus)

@@ -235,3 +235,4 @@ Research projects which developed specific components of OQS have been supported
 # liboqs-with-AIMer
 # liboqs-with-AIMer
 # liboqs-with-KpqC
+# liboqs-with-KpqC
