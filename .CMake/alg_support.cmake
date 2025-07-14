@@ -237,6 +237,11 @@ cmake_dependent_option(OQS_ENABLE_SIG_aimer_128s_ref "" ON "OQS_ENABLE_SIG_AIMER
 cmake_dependent_option(OQS_ENABLE_SIG_aimer_192s_ref "" ON "OQS_ENABLE_SIG_AIMER" OFF)
 cmake_dependent_option(OQS_ENABLE_SIG_aimer_256s_ref "" ON "OQS_ENABLE_SIG_AIMER" OFF)
 
+option(OQS_ENABLE_SIG_HAETAE "Enable haetae algorithm family" ON)
+cmake_dependent_option(OQS_ENABLE_SIG_haetae_120 "" ON "OQS_ENABLE_SIG_HAETAE" OFF)
+cmake_dependent_option(OQS_ENABLE_SIG_haetae_180 "" ON "OQS_ENABLE_SIG_HAETAE" OFF)
+cmake_dependent_option(OQS_ENABLE_SIG_haetae_260 "" ON "OQS_ENABLE_SIG_HAETAE" OFF)
+
 ##### OQS_COPY_FROM_UPSTREAM_FRAGMENT_ADD_ENABLE_BY_ALG_END
 
 ##### OQS_COPY_FROM_LIBJADE_FRAGMENT_ADD_ENABLE_BY_ALG_START

@@ -180,12 +180,18 @@ extern "C" {
 #define OQS_SIG_alg_aimer_192s "AIMER_192S"
 /** Algorithm identifier for AIMER_256S */
 #define OQS_SIG_alg_aimer_256s "AIMER_256S"
+/** Algorithm identifier for HAETAE_120 */
+#define OQS_SIG_alg_haetae_120 "HAETAE_120"
+/** Algorithm identifier for HAETAE_180 */
+#define OQS_SIG_alg_haetae_180 "HAETAE_180"
+/** Algorithm identifier for HAETAE_260 */
+#define OQS_SIG_alg_haetae_260 "HAETAE_260"
 ///// OQS_COPY_FROM_UPSTREAM_FRAGMENT_ALG_IDENTIFIER_END
 // EDIT-WHEN-ADDING-SIG
 ///// OQS_COPY_FROM_UPSTREAM_FRAGMENT_ALGS_LENGTH_START
 
 /** Number of algorithm identifiers above. */
-#define OQS_SIG_algs_length 74 //the original size was 68
+#define OQS_SIG_algs_length 77 //the original size was 68
 ///// OQS_COPY_FROM_UPSTREAM_FRAGMENT_ALGS_LENGTH_END
 
 /**
@@ -460,6 +466,9 @@ OQS_API bool OQS_SIG_supports_ctx_str(const char *alg_name);
 #ifdef OQS_ENABLE_SIG_AIMER
 #include <oqs/sig_aimer.h>
 #endif /* OQS_ENABLE_SIG_AIMER */
+#ifdef OQS_ENABLE_SIG_HAETAE
+#include <oqs/sig_haetae.h>
+#endif /* OQS_ENABLE_SIG_HAETAE */
 ///// OQS_COPY_FROM_UPSTREAM_FRAGMENT_INCLUDE_END
 // EDIT-WHEN-ADDING-SIG
 
