@@ -1,3 +1,6 @@
+I ported signature algorithm for AIMer and KEM algorithm for SMAUGT
+
+
 liboqs
 ======================
 
