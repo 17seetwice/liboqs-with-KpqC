@@ -35,6 +35,14 @@ extern int cryptolab_smaug5_crypto_kem_keypair(uint8_t *pk, uint8_t *sk);
 extern int cryptolab_smaug5_crypto_kem_enc(uint8_t *ct, uint8_t *ss, const uint8_t *pk);
 extern int cryptolab_smaug5_crypto_kem_dec(uint8_t *ss, const uint8_t *ct, const uint8_t *sk);
 
+OQS_API OQS_STATUS OQS_KEM_smaugt_5_keypair_derand(uint8_t *public_key, uint8_t *secret_key, const uint8_t *seed) {
+	(void)public_key;
+	(void)secret_key;
+	(void)seed;
+	return OQS_ERROR;
+}
+
+
 OQS_API OQS_STATUS OQS_KEM_smaugt_5_keypair(uint8_t *public_key, uint8_t *secret_key){
     return (OQS_STATUS) cryptolab_smaug5_crypto_kem_keypair(public_key, secret_key);
 }

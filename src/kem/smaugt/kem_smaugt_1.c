@@ -5,8 +5,6 @@
 #include <oqs/kem_smaugt.h>
 
 
-
-
 #if defined OQS_ENABLE_KEM_smaugt_1
 OQS_KEM *OQS_KEM_smaugt_1_new(void) {
 	OQS_KEM *kem = OQS_MEM_malloc(sizeof(OQS_KEM));
@@ -36,6 +34,14 @@ OQS_KEM *OQS_KEM_smaugt_1_new(void) {
 extern int cryptolab_smaug1_crypto_kem_keypair(uint8_t *pk, uint8_t *sk);
 extern int cryptolab_smaug1_crypto_kem_enc(uint8_t *ct, uint8_t *ss, const uint8_t *pk);
 extern int cryptolab_smaug1_crypto_kem_dec(uint8_t *ss, const uint8_t *ct, const uint8_t *sk);
+
+OQS_API OQS_STATUS OQS_KEM_smaugt_1_keypair_derand(uint8_t *public_key, uint8_t *secret_key, const uint8_t *seed) {
+	(void)public_key;
+	(void)secret_key;
+	(void)seed;
+	return OQS_ERROR;
+}
+
 
 OQS_API OQS_STATUS OQS_KEM_smaugt_1_keypair(uint8_t *public_key, uint8_t *secret_key){
     return (OQS_STATUS) cryptolab_smaug1_crypto_kem_keypair(public_key, secret_key);

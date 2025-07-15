@@ -47,7 +47,12 @@ OQS_API const char *OQS_KEM_alg_identifier(size_t i) {
 		OQS_KEM_alg_frodokem_1344_shake,
 		OQS_KEM_alg_smaugt_1,
 		OQS_KEM_alg_smaugt_3,		
-		OQS_KEM_alg_smaugt_5,
+		OQS_KEM_alg_smaugt_5,		
+		OQS_KEM_alg_ntruplus_576,
+		OQS_KEM_alg_ntruplus_768,
+		OQS_KEM_alg_ntruplus_864,
+		OQS_KEM_alg_ntruplus_1152,
+		
 	};
 	if (i >= OQS_KEM_algs_length) {
 		return NULL;
@@ -229,6 +234,30 @@ OQS_API int OQS_KEM_alg_is_enabled(const char *method_name) {
 #endif
 	} else if (0 == strcasecmp(method_name, OQS_KEM_alg_smaugt_5)) {
 #ifdef OQS_ENABLE_KEM_smaugt_5
+		return 1;
+#else
+		return 0;
+#endif
+	} else if (0 == strcasecmp(method_name, OQS_KEM_alg_ntruplus_576)) {
+#ifdef OQS_ENABLE_KEM_ntruplus_576
+		return 1;
+#else
+		return 0;
+#endif
+	} else if (0 == strcasecmp(method_name, OQS_KEM_alg_ntruplus_768)) {
+#ifdef OQS_ENABLE_KEM_ntruplus_768
+		return 1;
+#else
+		return 0;
+#endif
+	} else if (0 == strcasecmp(method_name, OQS_KEM_alg_ntruplus_864)) {
+#ifdef OQS_ENABLE_KEM_ntruplus_864
+		return 1;
+#else
+		return 0;
+#endif
+	} else if (0 == strcasecmp(method_name, OQS_KEM_alg_ntruplus_1152)) {
+#ifdef OQS_ENABLE_KEM_ntruplus_1152
 		return 1;
 #else
 		return 0;
@@ -456,7 +485,30 @@ OQS_API OQS_KEM *OQS_KEM_new(const char *method_name) {
 #else
 		return NULL;
 #endif
-
+	} else if (0 == strcasecmp(method_name, OQS_KEM_alg_ntruplus_576)) {
+#ifdef OQS_ENABLE_KEM_ntruplus_576
+		return OQS_KEM_ntruplus_576_new();
+#else
+		return NULL;
+#endif
+	} else if (0 == strcasecmp(method_name, OQS_KEM_alg_ntruplus_768)) {
+#ifdef OQS_ENABLE_KEM_ntruplus_768
+		return OQS_KEM_ntruplus_768_new();
+#else
+		return NULL;
+#endif
+	} else if (0 == strcasecmp(method_name, OQS_KEM_alg_ntruplus_864)) {
+#ifdef OQS_ENABLE_KEM_ntruplus_864
+		return OQS_KEM_ntruplus_864_new();
+#else
+		return NULL;
+#endif
+	} else if (0 == strcasecmp(method_name, OQS_KEM_alg_ntruplus_1152)) {
+#ifdef OQS_ENABLE_KEM_ntruplus_1152
+		return OQS_KEM_ntruplus_1152_new();
+#else
+		return NULL;
+#endif
 
 		///// OQS_COPY_FROM_UPSTREAM_FRAGMENT_NEW_CASE_END
 	} else if (0 == strcasecmp(method_name, OQS_KEM_alg_ntruprime_sntrup761)) {

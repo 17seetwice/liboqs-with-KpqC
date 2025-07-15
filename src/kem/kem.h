@@ -96,15 +96,24 @@ extern "C" {
 #define OQS_KEM_alg_smaugt_1 "SmaugT-1"
 /** Algorithm identifier for SMAUGT-3 KEM. */
 #define OQS_KEM_alg_smaugt_3 "SmaugT-3"
-/** Algorithm identifier for SMAUGT-1 KEM. */
+/** Algorithm identifier for SMAUGT-5 KEM. */
 #define OQS_KEM_alg_smaugt_5 "SmaugT-5"
+
+/** Algorithm identifier for NTRUPLUS576 KEM. */
+#define OQS_KEM_alg_ntruplus_576 "NTRUPLUS576"
+/** Algorithm identifier for NTRUPLUS768 KEM. */
+#define OQS_KEM_alg_ntruplus_768 "NTRUPLUS768"
+/** Algorithm identifier for NTRUPLUS864 KEM. */
+#define OQS_KEM_alg_ntruplus_864 "NTRUPLUS864"
+/** Algorithm identifier for NTRUPLUS1152 KEM. */
+#define OQS_KEM_alg_ntruplus_1152 "NTRUPLUS1152"
 
 // EDIT-WHEN-ADDING-KEM
 ///// OQS_COPY_FROM_UPSTREAM_FRAGMENT_ALGS_LENGTH_START
 
 /** Number of algorithm identifiers above.
-AIMER ADD */ 
-#define OQS_KEM_algs_length 32
+SMAUGT ADD */ 
+#define OQS_KEM_algs_length 36
 ///// OQS_COPY_FROM_UPSTREAM_FRAGMENT_ALGS_LENGTH_END
 
 /**
@@ -329,6 +338,9 @@ OQS_API void OQS_KEM_free(OQS_KEM *kem);
 #ifdef OQS_ENABLE_KEM_SMAUGT
 #include <oqs/kem_smaugt.h>
 #endif /* OQS_ENABLE_KEM_SMAUGT */
+#ifdef OQS_ENABLE_KEM_NTRUPLUS
+#include <oqs/kem_ntruplus.h>
+#endif /* OQS_ENABLE_KEM_NTRUPLUS */
 // EDIT-WHEN-ADDING-KEM
 
 #if defined(__cplusplus)
