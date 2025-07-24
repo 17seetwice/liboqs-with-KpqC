@@ -246,6 +246,16 @@ endif()
 if(OQS_ENABLE_KEM_ML_KEM)
     set(PUBLIC_HEADERS ${PUBLIC_HEADERS} ${PROJECT_SOURCE_DIR}/src/kem/ml_kem/kem_ml_kem.h)
 endif()
+if(OQS_ENABLE_KEM_SMAUG)
+    set(PUBLIC_HEADERS ${PUBLIC_HEADERS} ${PROJECT_SOURCE_DIR}/src/kem/smaug/kem_smaug.h)
+endif()
+if(OQS_ENABLE_KEM_NTRUPLUS)
+    set(PUBLIC_HEADERS ${PUBLIC_HEADERS} ${PROJECT_SOURCE_DIR}/src/kem/ntruplus/kem_ntruplus.h)
+endif()
+
+if(OQS_ENABLE_SIG_AIMER)
+    set(PUBLIC_HEADERS ${PUBLIC_HEADERS} ${PROJECT_SOURCE_DIR}/src/sig/aimer/sig_aimer.h)
+endif()
 if(OQS_ENABLE_SIG_DILITHIUM)
     set(PUBLIC_HEADERS ${PUBLIC_HEADERS} ${PROJECT_SOURCE_DIR}/src/sig/dilithium/sig_dilithium.h)
 endif()
@@ -274,6 +284,8 @@ endif()
 if(OQS_ENABLE_SIG_HAETAE)
     set(PUBLIC_HEADERS ${PUBLIC_HEADERS} ${PROJECT_SOURCE_DIR}/src/sig/haetae/sig_haetae.h)
 endif()
+
+
 
 ##### OQS_COPY_FROM_UPSTREAM_FRAGMENT_INCLUDE_HEADERS_END
 if(OQS_ENABLE_SIG_STFL_XMSS)

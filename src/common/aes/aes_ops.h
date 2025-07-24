@@ -5,6 +5,7 @@
  * SPDX-License-Identifier: MIT
  */
 
+
 #ifndef OQS_AES_OPS_H
 #define OQS_AES_OPS_H
 
@@ -59,6 +60,8 @@ struct OQS_AES_callbacks {
 	* Implementation of function OQS_AES128_CTR_inc_stream_iv.
 	*/
 	void (*AES128_CTR_inc_stream_iv)(const uint8_t *iv, size_t iv_len, const void *ctx, uint8_t *out, size_t out_len);
+
+
 
 	/**
 	 * Implementation of function OQS_AES256_ECB_load_schedule.

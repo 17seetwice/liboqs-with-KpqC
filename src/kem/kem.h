@@ -91,11 +91,31 @@ extern "C" {
 #define OQS_KEM_alg_frodokem_1344_aes "FrodoKEM-1344-AES"
 /** Algorithm identifier for FrodoKEM-1344-SHAKE KEM. */
 #define OQS_KEM_alg_frodokem_1344_shake "FrodoKEM-1344-SHAKE"
+
+/** Algorithm identifier for SMAUG1. */
+#define OQS_KEM_alg_smaug_1 "SMAUG1"
+/** Algorithm identifier for SMAUG3. */
+#define OQS_KEM_alg_smaug_3 "SMAUG3"
+/** Algorithm identifier for SMAUG5. */
+#define OQS_KEM_alg_smaug_5 "SMAUG5"
+// EDIT-WHEN-ADDING-KEM
+
+/** Algorithm identifier for NTRUPLUS-KEM-576. */
+#define OQS_KEM_alg_ntruplus_kem576 "NTRUPLUS-KEM-576"
+// EDIT-WHEN-ADDING-KEM
+/** Algorithm identifier for NTRUPLUS-KEM-768. */
+#define OQS_KEM_alg_ntruplus_kem768 "NTRUPLUS-KEM-768"
+// EDIT-WHEN-ADDING-KEM
+/** Algorithm identifier for NTRUPLUS-KEM-864. */
+#define OQS_KEM_alg_ntruplus_kem864 "NTRUPLUS-KEM-864"
+// EDIT-WHEN-ADDING-KEM
+/** Algorithm identifier for NTRUPLUS-KEM-1152. */
+#define OQS_KEM_alg_ntruplus_kem1152 "NTRUPLUS-KEM-1152"
 // EDIT-WHEN-ADDING-KEM
 ///// OQS_COPY_FROM_UPSTREAM_FRAGMENT_ALGS_LENGTH_START
 
 /** Number of algorithm identifiers above. */
-#define OQS_KEM_algs_length 29
+#define OQS_KEM_algs_length 36 //KpqC KEM algorithms : SMAUG, NTRUPLUS
 ///// OQS_COPY_FROM_UPSTREAM_FRAGMENT_ALGS_LENGTH_END
 
 /**
@@ -317,6 +337,14 @@ OQS_API void OQS_KEM_free(OQS_KEM *kem);
 #ifdef OQS_ENABLE_KEM_FRODOKEM
 #include <oqs/kem_frodokem.h>
 #endif /* OQS_ENABLE_KEM_FRODOKEM */
+
+#ifdef OQS_ENABLE_KEM_SMAUG
+#include <oqs/kem_smaug.h>
+#endif /* OQS_ENABLE_KEM_SMAUG */
+
+#ifdef OQS_ENABLE_KEM_NTRUPLUS
+#include <oqs/kem_ntruplus.h>
+#endif /* OQS_ENABLE_KEM_NTRUPLUS */
 // EDIT-WHEN-ADDING-KEM
 
 #if defined(__cplusplus)

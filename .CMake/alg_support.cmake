@@ -139,6 +139,18 @@ cmake_dependent_option(OQS_ENABLE_KEM_ml_kem_512 "" ON "OQS_ENABLE_KEM_ML_KEM" O
 cmake_dependent_option(OQS_ENABLE_KEM_ml_kem_768 "" ON "OQS_ENABLE_KEM_ML_KEM" OFF)
 cmake_dependent_option(OQS_ENABLE_KEM_ml_kem_1024 "" ON "OQS_ENABLE_KEM_ML_KEM" OFF)
 
+option(OQS_ENABLE_KEM_SMAUG "Enable smaug algorithm family" ON)
+cmake_dependent_option(OQS_ENABLE_KEM_smaug_1 "" ON "OQS_ENABLE_KEM_SMAUG" OFF)
+cmake_dependent_option(OQS_ENABLE_KEM_smaug_3 "" ON "OQS_ENABLE_KEM_SMAUG" OFF)
+cmake_dependent_option(OQS_ENABLE_KEM_smaug_5 "" ON "OQS_ENABLE_KEM_SMAUG" OFF)
+
+option(OQS_ENABLE_KEM_NTRUPLUS "Enable ntruplus algorithm family" ON)
+cmake_dependent_option(OQS_ENABLE_KEM_ntruplus_kem576 "" ON "OQS_ENABLE_KEM_SMAUG" OFF)
+cmake_dependent_option(OQS_ENABLE_KEM_ntruplus_kem768 "" ON "OQS_ENABLE_KEM_SMAUG" OFF)
+cmake_dependent_option(OQS_ENABLE_KEM_ntruplus_kem864 "" ON "OQS_ENABLE_KEM_SMAUG" OFF)
+cmake_dependent_option(OQS_ENABLE_KEM_ntruplus_kem1152 "" ON "OQS_ENABLE_KEM_SMAUG" OFF)
+
+
 option(OQS_ENABLE_SIG_DILITHIUM "Enable dilithium algorithm family" ON)
 cmake_dependent_option(OQS_ENABLE_SIG_dilithium_2 "" ON "OQS_ENABLE_SIG_DILITHIUM" OFF)
 cmake_dependent_option(OQS_ENABLE_SIG_dilithium_3 "" ON "OQS_ENABLE_SIG_DILITHIUM" OFF)
@@ -227,6 +239,14 @@ option(OQS_ENABLE_SIG_HAETAE "Enable haetae algorithm family" ON)
 cmake_dependent_option(OQS_ENABLE_SIG_haetae_2 "" ON "OQS_ENABLE_SIG_HAETAE" OFF)
 cmake_dependent_option(OQS_ENABLE_SIG_haetae_3 "" ON "OQS_ENABLE_SIG_HAETAE" OFF)
 cmake_dependent_option(OQS_ENABLE_SIG_haetae_5 "" ON "OQS_ENABLE_SIG_HAETAE" OFF)
+
+option(OQS_ENABLE_SIG_AIMER "Enable aimer algorithm family" ON)
+cmake_dependent_option(OQS_ENABLE_SIG_aimer_128f "" ON "OQS_ENABLE_SIG_AIMER" OFF)
+cmake_dependent_option(OQS_ENABLE_SIG_aimer_128s "" ON "OQS_ENABLE_SIG_AIMER" OFF)
+cmake_dependent_option(OQS_ENABLE_SIG_aimer_192f "" ON "OQS_ENABLE_SIG_AIMER" OFF)
+cmake_dependent_option(OQS_ENABLE_SIG_aimer_192s "" ON "OQS_ENABLE_SIG_AIMER" OFF)
+cmake_dependent_option(OQS_ENABLE_SIG_aimer_256f "" ON "OQS_ENABLE_SIG_AIMER" OFF)
+cmake_dependent_option(OQS_ENABLE_SIG_aimer_256s "" ON "OQS_ENABLE_SIG_AIMER" OFF)
 
 ##### OQS_COPY_FROM_UPSTREAM_FRAGMENT_ADD_ENABLE_BY_ALG_END
 

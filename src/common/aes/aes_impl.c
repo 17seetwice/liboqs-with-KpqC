@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 
+
 #include <assert.h>
 #include <stdio.h>
 #include <string.h>
@@ -177,6 +178,8 @@ struct OQS_AES_callbacks aes_default_callbacks = {
 	.AES128_ECB_enc = AES128_ECB_enc,
 	.AES128_ECB_enc_sch = AES128_ECB_enc_sch,
 	.AES128_CTR_inc_stream_iv = AES128_CTR_inc_stream_iv,
+
+
 	.AES256_ECB_load_schedule = AES256_ECB_load_schedule,
 	.AES256_CTR_inc_init = AES256_CTR_inc_init,
 	.AES256_CTR_inc_iv = AES256_CTR_inc_iv,

@@ -27,6 +27,9 @@ void oqs_aes128_ecb_enc_sch_armv8(const uint8_t *plaintext, const size_t plainte
 void oqs_aes128_ctr_enc_sch_armv8(const uint8_t *iv, const size_t iv_len, const void *schedule, uint8_t *out, size_t out_len);
 void oqs_aes128_ctr_enc_sch_upd_blks_armv8(void *schedule, uint8_t *out, size_t out_blks);
 
+
+
+
 void oqs_aes256_load_schedule_ni(const uint8_t *key, void **_schedule);
 void oqs_aes256_load_iv_ni(const uint8_t *iv, size_t iv_len, void *_schedule);
 void oqs_aes256_load_iv_u64_ni(uint64_t iv, void *_schedule);

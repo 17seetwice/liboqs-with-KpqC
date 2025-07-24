@@ -97,6 +97,18 @@ if(CONFIG_LIBOQS)
                 set(OQS_ENABLE_KEM_ML_KEM OFF)
         endif()
 
+        if(CONFIG_LIBOQS_ENABLE_KEM_NTRUPLUS)
+                set(OQS_ENABLE_KEM_NTRUPLUS ON)
+        else()
+                set(OQS_ENABLE_KEM_NTRUPLUS OFF)
+        endif()
+
+        if(CONFIG_LIBOQS_ENABLE_KEM_SMAUG)
+                set(OQS_ENABLE_KEM_SMAUG ON)
+        else()
+                set(OQS_ENABLE_KEM_SMAUG OFF)
+        endif()
+
         if(CONFIG_LIBOQS_ENABLE_SIG_DILITHIUM)
                 set(OQS_ENABLE_SIG_DILITHIUM ON)
         else()
@@ -157,6 +169,18 @@ if(CONFIG_LIBOQS)
                 set(OQS_ENABLE_SIG_snova_SNOVA_29_6_5 OFF)
         else()
                 set(OQS_ENABLE_SIG_SNOVA OFF)
+        endif()
+
+        if(CONFIG_LIBOQS_ENABLE_SIG_HAETAE)
+                set(OQS_ENABLE_SIG_HAETAE ON)
+        else()
+                set(OQS_ENABLE_SIG_HAETAE OFF)
+        endif()
+
+        if(CONFIG_LIBOQS_ENABLE_SIG_AIMER)
+                set(OQS_ENABLE_SIG_AIMER ON)
+        else()
+                set(OQS_ENABLE_SIG_AIMER OFF)
         endif()
 
         # Add the actual liboqs targets

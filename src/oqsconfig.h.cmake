@@ -144,6 +144,18 @@
 #cmakedefine OQS_ENABLE_KEM_ml_kem_1024_aarch64 1
 #cmakedefine OQS_ENABLE_KEM_ml_kem_1024_cuda 1
 
+#cmakedefine OQS_ENABLE_KEM_SMAUG 1
+#cmakedefine OQS_ENABLE_KEM_smaug_1 1
+#cmakedefine OQS_ENABLE_KEM_smaug_3 1
+#cmakedefine OQS_ENABLE_KEM_smaug_5 1
+
+#cmakedefine OQS_ENABLE_KEM_NTRUPLUS 1
+#cmakedefine OQS_ENABLE_KEM_ntruplus_kem576 1
+#cmakedefine OQS_ENABLE_KEM_ntruplus_kem768 1
+#cmakedefine OQS_ENABLE_KEM_ntruplus_kem864 1
+#cmakedefine OQS_ENABLE_KEM_ntruplus_kem1152 1
+
+
 #cmakedefine OQS_ENABLE_SIG_DILITHIUM 1
 #cmakedefine OQS_ENABLE_SIG_dilithium_2 1
 #cmakedefine OQS_ENABLE_SIG_dilithium_2_avx2 1
@@ -337,6 +349,13 @@
 #cmakedefine OQS_ENABLE_SIG_haetae_3 1
 #cmakedefine OQS_ENABLE_SIG_haetae_5 1
 
+#cmakedefine OQS_ENABLE_SIG_AIMER 1
+#cmakedefine OQS_ENABLE_SIG_aimer_128f 1
+#cmakedefine OQS_ENABLE_SIG_aimer_128s 1
+#cmakedefine OQS_ENABLE_SIG_aimer_192f 1
+#cmakedefine OQS_ENABLE_SIG_aimer_192s 1
+#cmakedefine OQS_ENABLE_SIG_aimer_256f 1
+#cmakedefine OQS_ENABLE_SIG_aimer_256s 1
 
 ///// OQS_COPY_FROM_UPSTREAM_FRAGMENT_ADD_ALG_ENABLE_DEFINES_END
 

@@ -101,6 +101,9 @@ void OQS_AES128_ECB_enc_sch(const uint8_t *plaintext, const size_t plaintext_len
  */
 void OQS_AES128_CTR_inc_stream_iv(const uint8_t *iv, size_t iv_len, const void *ctx, uint8_t *out, size_t out_len);
 
+
+
+
 /**
  * Function to fill a key schedule given an initial key for use in ECB mode encryption.
  *

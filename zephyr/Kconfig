@@ -46,6 +46,16 @@ config LIBOQS_ENABLE_KEM_ML_KEM
 	default y
 	depends on LIBOQS
 
+config LIBOQS_ENABLE_KEM_NTRUPLUS
+	bool "Enable the NTRUPLUS algorithm (KPQC)"
+	default y
+	depends on LIBOQS
+
+config LIBOQS_ENABLE_KEM_SMAUG
+	bool "Enable the SMAUG algorithm (KPQC)"
+	default y
+	depends on LIBOQS
+
 config LIBOQS_ENABLE_SIG_DILITHIUM
 	bool "Enable the DILITHIUM signature algorithm (NIST Round 3)"
 	default n
@@ -86,4 +96,14 @@ config LIBOQS_ENABLE_SIG_SNOVA
 	default y
 	depends on LIBOQS
 
+
+config LIBOQS_ENABLE_SIG_HAETAE
+	bool "Enable the HAETAE signature algorithm"
+	default y
+	depends on LIBOQS
+
+config LIBOQS_ENABLE_SIG_AIMER
+	bool "Enable the AIMER signature algorithm"
+	default y
+	depends on LIBOQS
 endmenu

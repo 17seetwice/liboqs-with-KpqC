@@ -13,3 +13,4 @@ void shake256_absorb_once(shake256incctx *state, const uint8_t *in, size_t inlen
 	shake256_inc_absorb(state, in, inlen);
 	shake256_inc_finalize(state);
 }
+

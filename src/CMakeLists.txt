@@ -39,6 +39,17 @@ if(OQS_ENABLE_KEM_ML_KEM)
     add_subdirectory(kem/ml_kem)
     set(KEM_OBJS ${KEM_OBJS} ${ML_KEM_OBJS})
 endif()
+
+if(OQS_ENABLE_KEM_SMAUG)
+    add_subdirectory(kem/smaug)
+    set(KEM_OBJS ${KEM_OBJS} ${SMAUG_OBJS})
+endif()
+
+if(OQS_ENABLE_KEM_NTRUPLUS)
+    add_subdirectory(kem/ntruplus)
+    set(KEM_OBJS ${KEM_OBJS} ${NTRUPLUS_OBJS})
+endif()
+
 if(OQS_ENABLE_SIG_DILITHIUM)
     add_subdirectory(sig/dilithium)
     set(SIG_OBJS ${SIG_OBJS} ${DILITHIUM_OBJS})
@@ -75,6 +86,12 @@ if(OQS_ENABLE_SIG_HAETAE)
     add_subdirectory(sig/haetae)
     set(SIG_OBJS ${SIG_OBJS} ${HAETAE_OBJS})
 endif()
+
+if(OQS_ENABLE_SIG_AIMER)
+    add_subdirectory(sig/aimer)
+    set(SIG_OBJS ${SIG_OBJS} ${AIMER_OBJS})
+endif()
+
 ##### OQS_COPY_FROM_UPSTREAM_FRAGMENT_ADD_ALG_OBJECTS_END
 
 if(OQS_ENABLE_SIG_STFL_XMSS)

@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 
+
 #include <assert.h>
 #include <string.h>
 
@@ -127,6 +128,8 @@ static void AES128_CTR_inc_ivu64(uint64_t iv, void *schedule) {
 	OQS_OPENSSL_GUARD(OSSL_FUNC(EVP_EncryptInit_ex)(ks->ctx, oqs_aes_128_ctr(), NULL, ks->key, ks->iv));
 }
 
+
+
 static void AES256_ECB_load_schedule(const uint8_t *key, void **schedule) {
 	*schedule = OQS_MEM_malloc(sizeof(struct key_schedule));
 	OQS_EXIT_IF_NULLPTR(*schedule, "OpenSSL");
@@ -233,6 +236,8 @@ struct OQS_AES_callbacks aes_default_callbacks = {
 	.AES128_free_schedule = AES128_free_schedule,
 	.AES128_ECB_enc = AES128_ECB_enc,
 	.AES128_ECB_enc_sch = AES128_ECB_enc_sch,
+
+
 	.AES256_ECB_load_schedule = AES256_ECB_load_schedule,
 	.AES128_CTR_inc_stream_iv = AES128_CTR_inc_stream_iv,
 	.AES256_CTR_inc_init = AES256_CTR_inc_init,

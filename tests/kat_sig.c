@@ -733,7 +733,107 @@ OQS_STATUS combine_message_signature(uint8_t **signed_msg, size_t *signed_msg_le
 		memcpy(*signed_msg + signature_len, msg, msg_len);
 		return OQS_SUCCESS;
 		///// OQS_COPY_FROM_UPSTREAM_FRAGMENT_COMBINE_MESSAGE_SIGNATURE_END
-	} else {
+	} else if (0 == strcmp(sig->method_name, "HAETAE2")) {
+		// signed_msg = signature || msg
+		*signed_msg_len = signature_len + msg_len;
+		*signed_msg = OQS_MEM_malloc(*signed_msg_len);
+		if (*signed_msg == NULL) {
+			return OQS_ERROR;
+		}
+		memcpy(*signed_msg, signature, signature_len);
+		memcpy(*signed_msg + signature_len, msg, msg_len);
+		return OQS_SUCCESS;
+		///// OQS_COPY_FROM_UPSTREAM_FRAGMENT_COMBINE_MESSAGE_SIGNATURE_END
+	} else if (0 == strcmp(sig->method_name, "HAETAE3")) {
+		// signed_msg = signature || msg
+		*signed_msg_len = signature_len + msg_len;
+		*signed_msg = OQS_MEM_malloc(*signed_msg_len);
+		if (*signed_msg == NULL) {
+			return OQS_ERROR;
+		}
+		memcpy(*signed_msg, signature, signature_len);
+		memcpy(*signed_msg + signature_len, msg, msg_len);
+		return OQS_SUCCESS;
+		///// OQS_COPY_FROM_UPSTREAM_FRAGMENT_COMBINE_MESSAGE_SIGNATURE_END
+	} else if (0 == strcmp(sig->method_name, "HAETAE5")) {
+		// signed_msg = signature || msg
+		*signed_msg_len = signature_len + msg_len;
+		*signed_msg = OQS_MEM_malloc(*signed_msg_len);
+		if (*signed_msg == NULL) {
+			return OQS_ERROR;
+		}
+		memcpy(*signed_msg, signature, signature_len);
+		memcpy(*signed_msg + signature_len, msg, msg_len);
+		return OQS_SUCCESS;
+		///// OQS_COPY_FROM_UPSTREAM_FRAGMENT_COMBINE_MESSAGE_SIGNATURE_END
+	} else if (0 == strcmp(sig->method_name, "AIMER128F")) {
+		// signed_msg = signature || msg
+		*signed_msg_len = signature_len + msg_len;
+		*signed_msg = OQS_MEM_malloc(*signed_msg_len);
+		if (*signed_msg == NULL) {
+			return OQS_ERROR;
+		}
+		memcpy(*signed_msg, signature, signature_len);
+		memcpy(*signed_msg + signature_len, msg, msg_len);
+		return OQS_SUCCESS;
+		///// OQS_COPY_FROM_UPSTREAM_FRAGMENT_COMBINE_MESSAGE_SIGNATURE_END
+	} else if (0 == strcmp(sig->method_name, "AIMER128S")) {
+		// signed_msg = signature || msg
+		*signed_msg_len = signature_len + msg_len;
+		*signed_msg = OQS_MEM_malloc(*signed_msg_len);
+		if (*signed_msg == NULL) {
+			return OQS_ERROR;
+		}
+		memcpy(*signed_msg, signature, signature_len);
+		memcpy(*signed_msg + signature_len, msg, msg_len);
+		return OQS_SUCCESS;
+		///// OQS_COPY_FROM_UPSTREAM_FRAGMENT_COMBINE_MESSAGE_SIGNATURE_END
+	} else if (0 == strcmp(sig->method_name, "AIMER192F")) {
+		// signed_msg = signature || msg
+		*signed_msg_len = signature_len + msg_len;
+		*signed_msg = OQS_MEM_malloc(*signed_msg_len);
+		if (*signed_msg == NULL) {
+			return OQS_ERROR;
+		}
+		memcpy(*signed_msg, signature, signature_len);
+		memcpy(*signed_msg + signature_len, msg, msg_len);
+		return OQS_SUCCESS;
+		///// OQS_COPY_FROM_UPSTREAM_FRAGMENT_COMBINE_MESSAGE_SIGNATURE_END
+	} else if (0 == strcmp(sig->method_name, "AIMER192S")) {
+		// signed_msg = signature || msg
+		*signed_msg_len = signature_len + msg_len;
+		*signed_msg = OQS_MEM_malloc(*signed_msg_len);
+		if (*signed_msg == NULL) {
+			return OQS_ERROR;
+		}
+		memcpy(*signed_msg, signature, signature_len);
+		memcpy(*signed_msg + signature_len, msg, msg_len);
+		return OQS_SUCCESS;
+		///// OQS_COPY_FROM_UPSTREAM_FRAGMENT_COMBINE_MESSAGE_SIGNATURE_END
+	} else if (0 == strcmp(sig->method_name, "AIMER256F")) {
+		// signed_msg = signature || msg
+		*signed_msg_len = signature_len + msg_len;
+		*signed_msg = OQS_MEM_malloc(*signed_msg_len);
+		if (*signed_msg == NULL) {
+			return OQS_ERROR;
+		}
+		memcpy(*signed_msg, signature, signature_len);
+		memcpy(*signed_msg + signature_len, msg, msg_len);
+		return OQS_SUCCESS;
+		///// OQS_COPY_FROM_UPSTREAM_FRAGMENT_COMBINE_MESSAGE_SIGNATURE_END
+	} else if (0 == strcmp(sig->method_name, "AIMER256S")) {
+		// signed_msg = signature || msg
+		*signed_msg_len = signature_len + msg_len;
+		*signed_msg = OQS_MEM_malloc(*signed_msg_len);
+		if (*signed_msg == NULL) {
+			return OQS_ERROR;
+		}
+		memcpy(*signed_msg, signature, signature_len);
+		memcpy(*signed_msg + signature_len, msg, msg_len);
+		return OQS_SUCCESS;
+		///// OQS_COPY_FROM_UPSTREAM_FRAGMENT_COMBINE_MESSAGE_SIGNATURE_END
+	}
+	else {
 		return OQS_ERROR;
 	}
 }
