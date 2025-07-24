@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include "params.h"
 
-extern const int16_t zetas[192];
+extern const int16_t zetas[288];
 
 void ntt(int16_t r[NTRUPLUS_N], const int16_t a[NTRUPLUS_N]);
 void invntt(int16_t r[NTRUPLUS_N], const int16_t a[NTRUPLUS_N]);

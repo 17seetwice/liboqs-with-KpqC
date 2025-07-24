@@ -63,7 +63,7 @@ void poly_tobytes(uint8_t r[NTRUPLUS_POLYBYTES], const poly *a)
 
 	for (int i = 0; i < 16; i++)
 	{
-		for (int j = 0; j < 12; j++)
+		for (int j = 0; j < 18; j++)
 		{
 			t[0]  = a->coeffs[64*j + i];
 			t[0] += (t[0] >> 15) & NTRUPLUS_Q;
@@ -79,10 +79,11 @@ void poly_tobytes(uint8_t r[NTRUPLUS_POLYBYTES], const poly *a)
 			r[96*j + 2*i + 32] = (t[1] >> 4);
 			r[96*j + 2*i + 33] = t[2];
 			r[96*j + 2*i + 64] = (t[2] >> 8) | (t[3] << 4); 
-			r[96*j + 2*i + 65] = (t[3] >> 4); 
+			r[96*j + 2*i + 65] = (t[3] >> 4);  
 		}
 	}	
 }
+
 
 /*************************************************
 * Name:        poly_frombytes
@@ -100,7 +101,7 @@ void poly_frombytes(poly *r, const uint8_t a[NTRUPLUS_POLYBYTES])
 
 	for(int i = 0; i < 16; i++)
 	{
-		for(int j = 0; j < 12; j++)
+		for(int j = 0; j < 18; j++)
 		{
 			t[0] = a[96*j + 2*i];
 			t[1] = a[96*j + 2*i + 1];
@@ -131,12 +132,12 @@ void poly_cbd1(poly *r, const unsigned char buf[NTRUPLUS_N/4])
 {
 	uint16_t t1, t2;
 
-	for(int i = 0; i < 3; i++)
+	for(int i = 0; i < 4; i++)
 	{
 		for (int j = 0; j < 16; j++)
 		{
 			t1 = load16_littleendian(buf + 32*i + 2*j);
-			t2 = load16_littleendian(buf + 32*i + 2*j + 96);
+			t2 = load16_littleendian(buf + 32*i + 2*j + 144);
 
 			for(int k = 0; k < 16; k++)
 			{
@@ -145,6 +146,20 @@ void poly_cbd1(poly *r, const unsigned char buf[NTRUPLUS_N/4])
 				t1 >>= 1;   
 				t2 >>= 1;
 			}
+		}
+	}
+
+	for (int j = 0; j < 8; j++)
+	{
+		t1 = load16_littleendian(buf + 128 + 2*j);
+		t2 = load16_littleendian(buf + 128 + 2*j + 144);
+
+		for(int k = 0; k < 16; k++)
+		{
+			r->coeffs[1024 + 8*k + j] = (t1 & 0x1) - (t2 & 0x1);
+
+			t1 >>= 1;   
+			t2 >>= 1;
 		}
 	}
 }
@@ -189,15 +204,15 @@ void poly_sotp(poly *r, const uint8_t *msg, const uint8_t *buf)
 **************************************************/
 int poly_sotp_inv(unsigned char *msg, const poly *a, const unsigned char *buf)
 {
-	uint32_t t1, t2, t3, t4;
+	uint16_t t1, t2, t3, t4;
 	uint32_t r = 0;
 
-	for(int i = 0; i < 3; i++)
+	for(int i = 0; i < 4; i++)
 	{
 		for (int j = 0; j < 16; j++)
 		{
 			t1 = load16_littleendian(buf + 32*i + 2*j);
-			t2 = load16_littleendian(buf + 32*i + 2*j + 96);
+			t2 = load16_littleendian(buf + 32*i + 2*j + 144);
 			t3 = 0;
 
 			for(int k = 0; k < 16; k++)
@@ -212,9 +227,31 @@ int poly_sotp_inv(unsigned char *msg, const poly *a, const unsigned char *buf)
 				t2 >>= 1;
 			}
 
-			msg[32*i + 2*j    ] = t3;
+			msg[32*i + 2*j   ] = t3;
 			msg[32*i + 2*j + 1] = t3 >> 8;
 		}
+	}
+
+	for (int j = 0; j < 8; j++)
+	{
+		t1 = load16_littleendian(buf + 128 + 2*j);
+		t2 = load16_littleendian(buf + 128 + 2*j + 144);
+		t3 = 0;
+
+		for(int k = 0; k < 16; k++)
+		{
+			t4 = t2 & 0x1;
+			t4 += a->coeffs[1024 + 8*k + j];
+			r |= t4;
+			t4 = (t4^t1) & 0x1;
+			t3 ^= t4 << k;
+
+			t1 >>= 1;
+			t2 >>= 1;
+		}
+
+		msg[128 + 2*j   ] = t3;
+		msg[128 + 2*j + 1] = t3 >> 8;
 	}
 
 	r = r >> 1;
@@ -252,12 +289,10 @@ void poly_invntt(poly *r, const poly *a)
 /*************************************************
 * Name:        poly_baseinv
 *
-* Description: Inversion of polynomial in NTT domain
+* Description: Inverse of polynomial in NTT domain
 *
 * Arguments:   - poly *r:       pointer to output polynomial
 *              - const poly *a: pointer to input polynomial
-* 
-* Returns:     integer
 **************************************************/
 int poly_baseinv(poly *r, const poly *a)
 {
@@ -265,9 +300,9 @@ int poly_baseinv(poly *r, const poly *a)
 
 	for(int i = 0; i < NTRUPLUS_N/8; ++i)
 	{
-		result = baseinv(r->coeffs + 8*i, a->coeffs + 8*i, zetas[96 + i]);
+		result = baseinv(r->coeffs + 8*i, a->coeffs + 8*i, zetas[144 + i]);
 		if(result) return 1;
-		result = baseinv(r->coeffs + 8*i + 4, a->coeffs + 8*i + 4, -zetas[96 + i]);
+		result = baseinv(r->coeffs + 8*i + 4, a->coeffs + 8*i + 4, -zetas[144 + i]);
 		if(result) return 1;
 	 }
 
@@ -287,27 +322,26 @@ void poly_basemul(poly *r, const poly *a, const poly *b)
 {
 	for(int i = 0; i < NTRUPLUS_N/8; ++i)
 	{
-		basemul(r->coeffs + 8*i, a->coeffs + 8*i, b->coeffs + 8*i, zetas[96 + i]);
-		basemul(r->coeffs + 8*i + 4, a->coeffs + 8*i + 4, b->coeffs + 8*i + 4, -zetas[96 + i]);
+		basemul(r->coeffs + 8*i, a->coeffs + 8*i, b->coeffs + 8*i, zetas[144 + i]);
+		basemul(r->coeffs + 8*i + 4, a->coeffs + 8*i + 4, b->coeffs + 8*i + 4, -zetas[144 + i]);
 	}
 }
 
 /*************************************************
 * Name:        poly_basemul_add
 *
-* Description: Multiplication then addition of three polynomials in NTT domain
+* Description: Multiplication of two polynomials in NTT domain
 *
 * Arguments:   - poly *r:       pointer to output polynomial
 *              - const poly *a: pointer to first input polynomial
 *              - const poly *b: pointer to second input polynomial
-*              - const poly *c: pointer to third input polynomial
 **************************************************/
 void poly_basemul_add(poly *r, const poly *a, const poly *b, const poly *c)
 {
 	for(int i = 0; i < NTRUPLUS_N/8; ++i)
 	{
-		basemul_add(r->coeffs + 8*i, a->coeffs + 8*i, b->coeffs + 8*i, c->coeffs + 8*i, zetas[96 + i]);
-		basemul_add(r->coeffs + 8*i + 4, a->coeffs + 8*i + 4, b->coeffs + 8*i + 4, c->coeffs + 8*i + 4, -zetas[96 + i]);
+		basemul_add(r->coeffs + 8*i, a->coeffs + 8*i, b->coeffs + 8*i, c->coeffs + 8*i, zetas[144 + i]);
+		basemul_add(r->coeffs + 8*i + 4, a->coeffs + 8*i + 4, b->coeffs + 8*i + 4, c->coeffs + 8*i + 4, -zetas[144 + i]);
 	}
 }
 
@@ -351,5 +385,5 @@ void poly_triple(poly *r, const poly *a)
 void poly_crepmod3(poly *r, const poly *a)
 {
 	for(int i = 0; i < NTRUPLUS_N; i++)
-    	r->coeffs[i] = crepmod3(a->coeffs[i]);
+		r->coeffs[i] = crepmod3(a->coeffs[i]);
 }

@@ -63,7 +63,7 @@ void poly_tobytes(uint8_t r[NTRUPLUS_POLYBYTES], const poly *a)
 
 	for (int i = 0; i < 16; i++)
 	{
-		for (int j = 0; j < 12; j++)
+		for (int j = 0; j < 13; j++)
 		{
 			t[0]  = a->coeffs[64*j + i];
 			t[0] += (t[0] >> 15) & NTRUPLUS_Q;
@@ -72,16 +72,35 @@ void poly_tobytes(uint8_t r[NTRUPLUS_POLYBYTES], const poly *a)
 			t[2]  = a->coeffs[64*j + i + 32];
 			t[2] += (t[2] >> 15) & NTRUPLUS_Q;			
 			t[3]  = a->coeffs[64*j + i + 48];
-			t[3] += (t[3] >> 15) & NTRUPLUS_Q;
+			t[3] += (t[3] >> 15) & NTRUPLUS_Q;	
 
 			r[96*j + 2*i +  0] = t[0];
 			r[96*j + 2*i +  1] = (t[0] >> 8) | (t[1] << 4);			
 			r[96*j + 2*i + 32] = (t[1] >> 4);
 			r[96*j + 2*i + 33] = t[2];
 			r[96*j + 2*i + 64] = (t[2] >> 8) | (t[3] << 4); 
-			r[96*j + 2*i + 65] = (t[3] >> 4); 
+			r[96*j + 2*i + 65] = (t[3] >> 4);  
 		}
-	}	
+	}
+
+	for (int i = 0; i < 8; i++)
+	{
+		t[0]  = a->coeffs[832 + i];
+		t[0] += (t[0] >> 15) & NTRUPLUS_Q;
+		t[1]  = a->coeffs[832 + i + 8];
+		t[1] += (t[1] >> 15) & NTRUPLUS_Q;
+		t[2]  = a->coeffs[832 + i + 16];
+		t[2] += (t[2] >> 15) & NTRUPLUS_Q;
+		t[3]  = a->coeffs[832 + i + 24];
+		t[3] += (t[3] >> 15) & NTRUPLUS_Q;
+
+		r[1248 + 2*i +  0] = t[0];
+		r[1248 + 2*i +  1] = (t[0] >> 8) | (t[1] << 4);			
+		r[1248 + 2*i + 16] = (t[1] >> 4);
+		r[1248 + 2*i + 17] = t[2];
+		r[1248 + 2*i + 32] = (t[2] >> 8) | (t[3] << 4); 
+		r[1248 + 2*i + 33] = (t[3] >> 4); 
+	}		
 }
 
 /*************************************************
@@ -100,7 +119,7 @@ void poly_frombytes(poly *r, const uint8_t a[NTRUPLUS_POLYBYTES])
 
 	for(int i = 0; i < 16; i++)
 	{
-		for(int j = 0; j < 12; j++)
+		for(int j = 0; j < 13; j++)
 		{
 			t[0] = a[96*j + 2*i];
 			t[1] = a[96*j + 2*i + 1];
@@ -114,6 +133,21 @@ void poly_frombytes(poly *r, const uint8_t a[NTRUPLUS_POLYBYTES])
 			r->coeffs[64*j + i + 32] = t[3]      | ((int16_t)t[4] & 0xf) << 8;
 			r->coeffs[64*j + i + 48] = t[4] >> 4 | ((int16_t)t[5]      ) << 4;
 		}
+	}
+
+	for(int i = 0; i < 8; i++)
+	{
+		t[0] = a[1248 + 2*i];
+		t[1] = a[1248 + 2*i + 1];
+		t[2] = a[1248 + 2*i + 16];
+		t[3] = a[1248 + 2*i + 17];
+		t[4] = a[1248 + 2*i + 32];
+		t[5] = a[1248 + 2*i + 33];								
+
+		r->coeffs[832 + i +  0] = t[0]      | ((int16_t)t[1] & 0xf) << 8;
+		r->coeffs[832 + i +  8] = t[1] >> 4 | ((int16_t)t[2]      ) << 4;
+		r->coeffs[832 + i + 16] = t[3]      | ((int16_t)t[4] & 0xf) << 8;
+		r->coeffs[832 + i + 24] = t[4] >> 4 | ((int16_t)t[5]      ) << 4;
 	}
 }
 
@@ -136,7 +170,7 @@ void poly_cbd1(poly *r, const unsigned char buf[NTRUPLUS_N/4])
 		for (int j = 0; j < 16; j++)
 		{
 			t1 = load16_littleendian(buf + 32*i + 2*j);
-			t2 = load16_littleendian(buf + 32*i + 2*j + 96);
+			t2 = load16_littleendian(buf + 32*i + 2*j + 108);
 
 			for(int k = 0; k < 16; k++)
 			{
@@ -145,6 +179,34 @@ void poly_cbd1(poly *r, const unsigned char buf[NTRUPLUS_N/4])
 				t1 >>= 1;   
 				t2 >>= 1;
 			}
+		}
+	}
+
+	for (int j = 0; j < 4; j++)
+	{
+		t1 = load16_littleendian(buf + 96 + 2*j);
+		t2 = load16_littleendian(buf + 96 + 2*j + 108);
+
+		for(int k = 0; k < 16; k++)
+		{
+			r->coeffs[768 + 4*k + j] = (t1 & 0x1) - (t2 & 0x1);
+
+			t1 >>= 1;   
+			t2 >>= 1;
+		}
+	}
+
+	for (int j = 0; j < 2; j++)
+	{
+		t1 = load16_littleendian(buf + 104 + 2*j);
+		t2 = load16_littleendian(buf + 104 + 2*j + 108);
+
+		for(int k = 0; k < 16; k++)
+		{
+			r->coeffs[832 + 2*k + j] = (t1 & 0x1) - (t2 & 0x1);
+
+			t1 >>= 1;   
+			t2 >>= 1;
 		}
 	}
 }
@@ -197,7 +259,7 @@ int poly_sotp_inv(unsigned char *msg, const poly *a, const unsigned char *buf)
 		for (int j = 0; j < 16; j++)
 		{
 			t1 = load16_littleendian(buf + 32*i + 2*j);
-			t2 = load16_littleendian(buf + 32*i + 2*j + 96);
+			t2 = load16_littleendian(buf + 32*i + 2*j + 108);
 			t3 = 0;
 
 			for(int k = 0; k < 16; k++)
@@ -215,6 +277,50 @@ int poly_sotp_inv(unsigned char *msg, const poly *a, const unsigned char *buf)
 			msg[32*i + 2*j    ] = t3;
 			msg[32*i + 2*j + 1] = t3 >> 8;
 		}
+	}
+
+	for (int j = 0; j < 4; j++)
+	{
+		t1 = load16_littleendian(buf + 96 + 2*j);
+		t2 = load16_littleendian(buf + 96 + 2*j + 108);
+		t3 = 0;
+
+		for(int k = 0; k < 16; k++)
+		{
+			t4 = t2 & 0x1;
+			t4 += a->coeffs[768 + 4*k + j];
+			r |= t4;
+			t4 = (t4^t1) & 0x1;
+			t3 ^= t4 << k;
+
+			t1 >>= 1;
+			t2 >>= 1;
+		}
+
+		msg[96 + 2*j    ] = t3;
+		msg[96 + 2*j + 1] = t3 >> 8;
+	}
+
+	for (int j = 0; j < 2; j++)
+	{
+		t1 = load16_littleendian(buf + 104 + 2*j);
+		t2 = load16_littleendian(buf + 104 + 2*j + 108);
+		t3 = 0;
+
+		for(int k = 0; k < 16; k++)
+		{
+			t4 = t2 & 0x1;
+			t4 += a->coeffs[832 + 2*k + j];
+			r |= t4;
+			t4 = (t4^t1) & 0x1;
+			t3 ^= t4 << k;
+
+			t1 >>= 1;
+			t2 >>= 1;
+		}
+
+		msg[104 + 2*j    ] = t3;
+		msg[104 + 2*j + 1] = t3 >> 8;
 	}
 
 	r = r >> 1;
@@ -263,11 +369,11 @@ int poly_baseinv(poly *r, const poly *a)
 {
 	int result = 0;
 
-	for(int i = 0; i < NTRUPLUS_N/8; ++i)
+	for(int i = 0; i < NTRUPLUS_N/6; ++i)
 	{
-		result = baseinv(r->coeffs + 8*i, a->coeffs + 8*i, zetas[96 + i]);
+		result = baseinv(r->coeffs+6*i, a->coeffs+6*i, zetas[144+i]);
 		if(result) return 1;
-		result = baseinv(r->coeffs + 8*i + 4, a->coeffs + 8*i + 4, -zetas[96 + i]);
+		result = baseinv(r->coeffs+6*i+3, a->coeffs+6*i+3, -zetas[144+i]);
 		if(result) return 1;
 	 }
 
@@ -285,10 +391,10 @@ int poly_baseinv(poly *r, const poly *a)
 **************************************************/
 void poly_basemul(poly *r, const poly *a, const poly *b)
 {
-	for(int i = 0; i < NTRUPLUS_N/8; ++i)
+	for(int i = 0; i < NTRUPLUS_N/6; i++)
 	{
-		basemul(r->coeffs + 8*i, a->coeffs + 8*i, b->coeffs + 8*i, zetas[96 + i]);
-		basemul(r->coeffs + 8*i + 4, a->coeffs + 8*i + 4, b->coeffs + 8*i + 4, -zetas[96 + i]);
+		basemul(r->coeffs+6*i,   a->coeffs+6*i,   b->coeffs+6*i,    zetas[144+i]);
+		basemul(r->coeffs+6*i+3, a->coeffs+6*i+3, b->coeffs+6*i+3, -zetas[144+i]);
 	}
 }
 
@@ -304,10 +410,10 @@ void poly_basemul(poly *r, const poly *a, const poly *b)
 **************************************************/
 void poly_basemul_add(poly *r, const poly *a, const poly *b, const poly *c)
 {
-	for(int i = 0; i < NTRUPLUS_N/8; ++i)
+	for(int i = 0; i < NTRUPLUS_N/6; i++)
 	{
-		basemul_add(r->coeffs + 8*i, a->coeffs + 8*i, b->coeffs + 8*i, c->coeffs + 8*i, zetas[96 + i]);
-		basemul_add(r->coeffs + 8*i + 4, a->coeffs + 8*i + 4, b->coeffs + 8*i + 4, c->coeffs + 8*i + 4, -zetas[96 + i]);
+		basemul_add(r->coeffs+6*i,   a->coeffs+6*i,   b->coeffs+6*i,   c->coeffs+6*i,    zetas[144+i]);
+		basemul_add(r->coeffs+6*i+3, a->coeffs+6*i+3, b->coeffs+6*i+3, c->coeffs+6*i+3, -zetas[144+i]);
 	}
 }
 
@@ -351,5 +457,5 @@ void poly_triple(poly *r, const poly *a)
 void poly_crepmod3(poly *r, const poly *a)
 {
 	for(int i = 0; i < NTRUPLUS_N; i++)
-    	r->coeffs[i] = crepmod3(a->coeffs[i]);
+		r->coeffs[i] = crepmod3(a->coeffs[i]);
 }
