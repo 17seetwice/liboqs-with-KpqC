@@ -1,4 +1,11 @@
 #include "kem.h"
+#include "randombytes.h"
+#include "ciphertext.h"
+#include "hash.h"
+#include "indcpa.h"
+#include "key.h"
+#include "parameters.h"
+#include "verify.h"
 
 /*************************************************
  * Name:        crypto_kem_keypair
@@ -11,11 +18,12 @@
  *              - secret_key *sk: pointer to output private key
  *                (a structure composed of (vector s, t, vector negstart))
  **************************************************/
-void crypto_kem_keypair(uint8_t *pk, uint8_t *sk) {
+int crypto_kem_keypair(uint8_t *pk, uint8_t *sk) {
     indcpa_keypair(pk, sk);
     randombytes(sk + PKE_SECRETKEY_BYTES, T_BYTES);
     for (int i = 0; i < PUBLICKEY_BYTES; i++)
         sk[i + PKE_SECRETKEY_BYTES + T_BYTES] = pk[i];
+    return 0;
 }
 
 /*************************************************
@@ -94,3 +102,4 @@ int crypto_kem_dec(uint8_t *ss, const uint8_t *ctxt, const uint8_t *sk) {
     cmov(ss, buf + DELTA_BYTES, CRYPTO_BYTES, 1);
     return 0;
 }
+

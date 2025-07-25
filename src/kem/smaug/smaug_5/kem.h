@@ -6,13 +6,12 @@
 #include "indcpa.h"
 #include "key.h"
 #include "parameters.h"
-#include "randombytes.h"
 #include "verify.h"
 
 #define SHA3_256_HashSize 32
 
 #define crypto_kem_keypair SMAUG_NAMESPACE(crypto_kem_keypair)
-void crypto_kem_keypair(uint8_t *pk, uint8_t *sk);
+int crypto_kem_keypair(uint8_t *pk, uint8_t *sk);
 #define crypto_kem_enc SMAUG_NAMESPACE(crypto_kem_enc)
 int crypto_kem_enc(uint8_t *ctxt, uint8_t *ss, const uint8_t *pk);
 #define crypto_kem_dec SMAUG_NAMESPACE(crypto_kem_dec)

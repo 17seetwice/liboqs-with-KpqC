@@ -1,4 +1,5 @@
 #include "kem.h"
+#include "randombytes.h"
 
 /*************************************************
  * Name:        crypto_kem_keypair
