@@ -145,10 +145,10 @@ cmake_dependent_option(OQS_ENABLE_KEM_smaug_3 "" ON "OQS_ENABLE_KEM_SMAUG" OFF)
 cmake_dependent_option(OQS_ENABLE_KEM_smaug_5 "" ON "OQS_ENABLE_KEM_SMAUG" OFF)
 
 option(OQS_ENABLE_KEM_NTRUPLUS "Enable ntruplus algorithm family" ON)
-cmake_dependent_option(OQS_ENABLE_KEM_ntruplus_kem576 "" ON "OQS_ENABLE_KEM_SMAUG" OFF)
-cmake_dependent_option(OQS_ENABLE_KEM_ntruplus_kem768 "" ON "OQS_ENABLE_KEM_SMAUG" OFF)
-cmake_dependent_option(OQS_ENABLE_KEM_ntruplus_kem864 "" ON "OQS_ENABLE_KEM_SMAUG" OFF)
-cmake_dependent_option(OQS_ENABLE_KEM_ntruplus_kem1152 "" ON "OQS_ENABLE_KEM_SMAUG" OFF)
+cmake_dependent_option(OQS_ENABLE_KEM_ntruplus_kem576 "" ON "OQS_ENABLE_KEM_NTRUPLUS" OFF)
+cmake_dependent_option(OQS_ENABLE_KEM_ntruplus_kem768 "" ON "OQS_ENABLE_KEM_NTRUPLUS" OFF)
+cmake_dependent_option(OQS_ENABLE_KEM_ntruplus_kem864 "" ON "OQS_ENABLE_KEM_NTRUPLUS" OFF)
+cmake_dependent_option(OQS_ENABLE_KEM_ntruplus_kem1152 "" ON "OQS_ENABLE_KEM_NTRUPLUS" OFF)
 
 
 option(OQS_ENABLE_SIG_DILITHIUM "Enable dilithium algorithm family" ON)
