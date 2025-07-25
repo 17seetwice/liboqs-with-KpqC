@@ -126,7 +126,7 @@ int ntruplus_kem864_crypto_kem_enc(unsigned char *ct,
 *
 * On failure, ss will contain zero values.
 **************************************************/
-int ntruplus_kem864_crypto_kem_dec(unsigned char *ss,
+int crypto_kem_dec(unsigned char *ss,
                    const unsigned char *ct,
                    const unsigned char *sk)
 {

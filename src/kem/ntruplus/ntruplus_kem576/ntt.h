@@ -4,6 +4,13 @@
 #include <stdint.h>
 #include "params.h"
 
+#define zetas NTRUPLUS_NAMESPACE(zetas)
+#define ntt NTRUPLUS_NAMESPACE(ntt)
+#define invntt NTRUPLUS_NAMESPACE(invntt)
+#define baseinv NTRUPLUS_NAMESPACE(baseinv)
+#define basemul NTRUPLUS_NAMESPACE(basemul)
+#define basemul_add NTRUPLUS_NAMESPACE(basemul_add)
+
 extern const int16_t zetas[144];
 
 void ntt(int16_t r[NTRUPLUS_N], const int16_t a[NTRUPLUS_N]);

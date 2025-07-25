@@ -12,6 +12,20 @@ typedef struct{
 	int16_t coeffs[NTRUPLUS_N];
 } poly;
 
+#define poly_tobytes NTRUPLUS_NAMESPACE(poly_tobytes)
+#define poly_frombytes NTRUPLUS_NAMESPACE(poly_frombytes)
+#define poly_cbd1 NTRUPLUS_NAMESPACE(poly_cbd1)
+#define poly_sotp NTRUPLUS_NAMESPACE(poly_sotp)
+#define poly_sotp_inv NTRUPLUS_NAMESPACE(poly_sotp_inv)
+#define poly_ntt NTRUPLUS_NAMESPACE(poly_ntt)
+#define poly_invntt NTRUPLUS_NAMESPACE(poly_invntt)
+#define poly_baseinv NTRUPLUS_NAMESPACE(poly_baseinv)
+#define poly_basemul NTRUPLUS_NAMESPACE(poly_basemul)
+#define poly_basemul_add NTRUPLUS_NAMESPACE(poly_basemul_add)
+#define poly_sub NTRUPLUS_NAMESPACE(poly_sub)
+#define poly_triple NTRUPLUS_NAMESPACE(poly_triple)
+#define poly_crepmod3 NTRUPLUS_NAMESPACE(poly_crepmod3)
+
 void poly_tobytes(uint8_t r[NTRUPLUS_POLYBYTES], const poly *a);
 void poly_frombytes(poly *r, const uint8_t a[NTRUPLUS_POLYBYTES]);
 

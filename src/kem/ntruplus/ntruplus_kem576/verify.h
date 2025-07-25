@@ -5,6 +5,8 @@
 #include <stdint.h>
 #include "params.h"
 
+#define verify NTRUPLUS_NAMESPACE(verify)
+
 int verify(const uint8_t *a, const uint8_t *b, size_t len);
 
 #endif
