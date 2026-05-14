@@ -1,3 +1,7 @@
+KpqC AIMER,HAETAE, SMAUG, NTRUPLUS added
+you can easily use KpqC at openssl.
+here https://github.com/17seetwice/oqs-provider-with-kpqc
+to use openssl based on KpqC.
 liboqs
 ======================
 
